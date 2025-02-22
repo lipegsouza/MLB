@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ team_info.name }} - Team Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Team Details</h1>
+
+        <div>
+            <img src="{{ team_info.logo_url }}" alt="Photo of {{ team_info.fullName }}" width="256" height="256">
+            <h2>{{ team_info.name }}</h2>
+            <p><strong>Name:</strong> {{ team_info.name }}</p>
+            <p><strong>Stadium:</strong> {{ team_info.stadium }}</p>
+            <p><strong>Division:</strong> {{ team_info.division }}</p>
+        </div>
+
+        {% if roster %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Number</th>
+                    <th>Position</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for player in roster %}
+                <tr>
+                    <td><a href="{{ url_for('player', player_id=player.id) }}" target="_blank">{{ player.name }}</a></td>
+                    <td>{{ player.jerseyNumber }}</td>
+                    <td>{{ player.position }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+            <p>No players found on the roster.</p>
+        {% endif %}
+
+        <a href="/" class="btn">Back to Home</a>
+    </div>
+</body>
+</html>

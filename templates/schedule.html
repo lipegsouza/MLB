@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MLB Schedule - {{ year }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body class="schedule-page">
+    <div class="container">
+        <h1>MLB Schedule - {{ year }}</h1>
+
+        {% if games %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Home Team</th>
+                        <th>Away Team</th>
+                        <th>Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for game in games %}
+                        <tr>
+                            <td>{{ game.date }}</td>
+                            <td><a href="{{ url_for('team', team_id=game.home_team_id) }}" target="_blank">{{ game.home_team }}</a></td>
+                            <td><a href="{{ url_for('team', team_id=game.away_team_id) }}" target="_blank">{{ game.away_team }}</a></td>
+                            <td><a href="{{ url_for('gamedetails', game_id=game.game_id) }}">{{ game.score }}</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No games found.</p>
+        {% endif %}
+
+        <a href="/" class="btn">Back to Home</a>
+    </div>
+</body>
+</html>

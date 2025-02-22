@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MLB Standings - {{ year }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body class="standings-page">
+    <div class="container">
+        <h1>MLB Standings - {{ year }}</h1>
+
+        <h2>American League</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Team</th>
+                    <th>W</th>
+                    <th>L</th>
+                    <th>PCT</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for team in american_league %}
+                    <tr>
+                        <td><a href="{{ url_for('team', team_id=team.team.id) }}" target="_blank">{{ team.team.name }}</a></td>
+                        <td>{{ team.wins }}</td>
+                        <td>{{ team.losses }}</td>
+                        <td>{{ team.leagueRecord.pct }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h2>National League</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Team</th>
+                    <th>W</th>
+                    <th>L</th>
+                    <th>PCT</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for team in national_league %}
+                    <tr>
+                         <td><a href="{{ url_for('team', team_id=team.team.id) }}" target="_blank">{{ team.team.name }}</a></td>
+                        <td>{{ team.wins }}</td>
+                        <td>{{ team.losses }}</td>
+                        <td>{{ team.leagueRecord.pct }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="/" class="btn">Back to Home</a>
+    </div>
+</body>
+</html>

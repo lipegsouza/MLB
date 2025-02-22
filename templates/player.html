@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ player_data['full_name'] }} - Player Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Player Details</h1>
+
+        <div>
+            <img src="{{ player_data['photo_url'] }}" alt="Photo of {{ player_data['full_name'] }}">
+            <h2>{{ player_data['full_name'] }}</h2>
+            <p><strong>Nickname:</strong> {{ player_data['nickname'] }}</p>
+            <p><strong>Position:</strong> {{ player_data['position'] }}</p>
+            <p><strong>Birthplace:</strong> {{ player_data['birthplace'] }}</p>
+            <p><strong>Birthdate:</strong> {{ player_data['birthdate'] }}</p>
+            <p><strong>Age:</strong> {{ player_data['age'] }} years old</p>
+            <p><strong>Height:</strong> {{ player_data['height'] }}</p>
+            <p><strong>Weight:</strong> {{ player_data['weight'] }} lbs</p>
+            <p><strong>MLB Debut:</strong> {{ player_data['mlb_debut'] }}</p>
+            <p><strong>Bats:</strong> {{ player_data['bats'] }}</p>
+            <p><strong>Throws:</strong> {{ player_data['throws'] }}</p>
+        </div>
+
+        <a href="{{ url_for('leaders', year=2024) }}" class="btn">Back to Leaders</a>
+    </div>
+</body>
+</html>

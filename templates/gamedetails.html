@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Details - {{ game_data['game_id'] }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Game Details - {{ game_data['game_id'] }}</h1>
+
+        {% if game_data['highlight_url'] %}
+            <video width="100%" controls>
+                <source src="{{ game_data['highlight_url'] }}" type="video/mp4">
+                Seu navegador não suporta a tag de vídeo.
+            </video>
+        {% else %}
+            <p>Não há vídeo disponível para este jogo.</p>
+        {% endif %}
+
+        <h2>Game Information</h2>
+        <p><strong>Game ID:</strong> {{ game_data['game_id'] }}</p>
+        <a href="/schedule?year=2024" class="btn">Back to Schedule</a>
+    </div>
+</body>
+</html>
